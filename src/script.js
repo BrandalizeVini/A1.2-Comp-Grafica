@@ -6,7 +6,7 @@ import * as dat from 'dat.gui'
 const loader = new THREE.TextureLoader()
 const height = loader.load('height.png')
 const texture = loader.load('/texture.jpg')
-const alpha = loader.load('/alpha.png')
+const alpha = loader.load('alpha.png')
 
 
 // Debug
@@ -28,7 +28,7 @@ const material = new THREE.MeshStandardMaterial({
     map: texture,
     displacementMap: height,
     displacementScale: .6,
-    aphaMap: alpha,
+    alphaMap: alpha,
     transparent: true,
     depthTest: false,
 })
@@ -107,9 +107,10 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 /**
  * Animate
  */
-document.addEventListener('mousemove', animaeTerrain)
+document.addEventListener('mousemove', animateTerrain)
 let mouseY = 0
-function animaeTerrain(event){
+
+function animateTerrain(event){
     mouseY = event.clientY
 }
 
@@ -121,8 +122,9 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    plane.rotation.z = .5 * elapsedTime
-    plane.material.displacement = .3 + mouseY * 0.0008
+    plane.rotation.z = .3 * elapsedTime
+
+    plane.material.displacementScale = .3 + mouseY * 0.0008
 
     // Render
     renderer.render(scene, camera)
