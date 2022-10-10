@@ -6,7 +6,7 @@
 
 <br>
 
-## ⚙️ Configuração
+## ⚙️ Configurações:
 Realizar o download do [Node.js](https://nodejs.org/en/download/).
 
 No terminal do Visual Studio Code, navegar até a pasta do projeto e executar os comnados abaixo

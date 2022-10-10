@@ -2,9 +2,14 @@ import './style.css'
 import * as THREE from 'three'
 import * as dat from 'dat.gui'
 
+// Translação - position
+// Escala - scale   
+// Rotações - rotation
+
 //Texture loader
 const loader = new THREE.TextureLoader()
-const height = loader.load('height.png')
+const height = loader.load('4.png')
+//const height = loader.load('height.png')
 const texture = loader.load('/texture.jpg')
 const alpha = loader.load('alpha.png')
 
@@ -27,7 +32,7 @@ const material = new THREE.MeshStandardMaterial({
     color: 'gray',
     map: texture,
     displacementMap: height,
-    displacementScale: .6,
+    displacementScale: .1,
     alphaMap: alpha,
     transparent: true,
     depthTest: false,
@@ -99,7 +104,8 @@ scene.add(camera)
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
+    alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -122,9 +128,9 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    plane.rotation.z = .3 * elapsedTime
+    plane.rotation.z = .4 * elapsedTime
 
-    plane.material.displacementScale = .3 + mouseY * 0.0008
+    plane.material.displacementScale = .6 + mouseY * 0.0008
 
     // Render
     renderer.render(scene, camera)
